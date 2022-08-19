@@ -10,6 +10,7 @@ class HornedBeast extends React.Component {
   }
 
   increment = (e) => {
+    e.preventDefault();  // How to stop click event from bubbling up / prevent selecting text?
     let nextState = {
       count: this.state.count + 1
     }
@@ -20,9 +21,9 @@ class HornedBeast extends React.Component {
     return (
       <div>
         <h2>{this.props.title}</h2>
-        <img src={this.props.imageUrl} alt="A horned beast" title={this.props.title} width="200" onClick = {this.increment} />
+        <img src={this.props.imageUrl} alt="A horned beast" title={this.props.title} width="200" onClick={() => this.props.handlerToOpenModal(this.props.title)} />
         <p>{this.props.description}</p>
-        <p>❤️ {this.state.count}</p>
+        <p onClick={this.increment}>❤️ {this.state.count}</p>
       </div>
     );
   }
